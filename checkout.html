@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>MarkisConnects | Checkout</title>
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet"/>
+  <!-- Main CSS -->
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" type="image/png" href="logo.png">
+
+
+  <style>
+    /* --- Checkout Section --- */
+    .checkout-section {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 30px;
+      padding: 40px 20px;
+      background-color: #f9f9f9;
+    }
+
+    .checkout-summary, .checkout-payment {
+      background-color: #fff;
+      padding: 25px 20px;
+      border-radius: 15px;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.1);
+      max-width: 400px;
+      width: 100%;
+      position: relative;
+      border-top: 6px solid #4e73df;
+    }
+
+    .checkout-summary::after, .checkout-payment::after {
+      content: "";
+      position: absolute;
+      bottom: -15px;
+      left: 10px;
+      right: 10px;
+      height: 15px;
+      border-bottom: 2px dashed #ccc;
+    }
+
+    .checkout-summary h2, .checkout-payment h2 {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 1.4rem;
+      color: #333;
+      margin-bottom: 20px;
+    }
+
+    .checkout-summary p, .checkout-payment p {
+      font-size: 1rem;
+      margin-bottom: 10px;
+      color: #555;
+    }
+
+    #paystack-button {
+      background-color: #4e73df;
+      color: #fff;
+      padding: 12px 20px;
+      font-size: 1rem;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    #paystack-button:hover {
+      background-color: #2e59d9;
+    }
+
+    .payment-message {
+      margin-top: 10px;
+      color: red;
+      font-weight: 500;
+    }
+
+    .payment-email {
+      margin: 15px 0;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .payment-email label {
+      margin-bottom: 5px;
+      font-weight: 500;
+    }
+
+    .payment-email input {
+      padding: 10px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      font-size: 1rem;
+    }
+
+    @media(max-width: 900px){
+      .checkout-section { flex-direction: column; align-items: center; }
+    }
+  </style>
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="logo"><a href="index.html"><i class="fa-solid fa-house"></i></a></div>
+  <div class="nav-links">
+    <a href="index.html#shop-section">Shop</a>
+    <a href="checkout.html">Checkout</a>
+  </div>
+</nav>
+
+<section class="checkout-section">
+  <!-- LEFT SUMMARY TILE -->
+  <div class="checkout-summary">
+    <h2><i class="fa-solid fa-receipt"></i> Order Summary</h2>
+    <div class="summary-content">
+      <p><strong>Network:</strong> <span id="summary-network">N/A</span></p>
+      <p><strong>Data Bundle:</strong> <span id="summary-bundle">N/A</span></p>
+      <p><strong>Price:</strong> <span id="summary-price">GHS 0</span></p>
+      <p><strong>Beneficiary:</strong> <span id="summary-beneficiary">N/A</span></p>
+    </div>
+  </div>
+
+  <!-- RIGHT PAYMENT TILE -->
+  <div class="checkout-payment">
+    <h2><i class="fa-solid fa-credit-card"></i> Payment Method</h2>
+    <div class="payment-method">
+      <p>Pay securely using Paystack</p>
+      <div class="payment-email">
+        <label for="payer-email">Enter your Email (required)</label>
+        <input type="email" id="payer-email" placeholder="you@example.com" required>
+      </div>
+      <button id="paystack-button" type="button">Confirm and Pay</button>
+      <div class="payment-message" id="payment-message"></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-top">
+    <div class="footer-logo"><img src="logo.png" alt="MarkisConnects Logo"></div>
+    <div class="footer-links"><strong>Quick Links</strong><a href="shop.html">Shop</a><a href="terms.html">Terms & Conditions</a></div>
+    <div class="contact"><strong>Get In Touch</strong>
+      <p><i class="fa-solid fa-phone"></i> 0536335941</p>
+      <p><i class="fa-solid fa-envelope"></i> markisconnects@gmail.com</p>
+      <p><i class="fa-solid fa-location-dot"></i> Tamale, Ghana</p>
+    </div>
+  </div>
+  <div class="footer-bottom">© 2025 MarkisConnects. All Rights Reserved.</div>
+</footer>
+
+<script src="https://js.paystack.co/v1/inline.js"></script>
+<script>
+  // Fill checkout summary
+  function populateCheckout() {
+    document.getElementById('summary-network').textContent = localStorage.getItem('selectedNetwork') || 'N/A';
+    document.getElementById('summary-bundle').textContent = localStorage.getItem('selectedBundle') || 'N/A';
+    document.getElementById('summary-price').textContent = 'GHS ' + (localStorage.getItem('selectedPrice') || '0');
+    document.getElementById('summary-beneficiary').textContent = localStorage.getItem('beneficiaryNumber') || 'N/A';
+  }
+  populateCheckout();
+
+  document.getElementById('paystack-button').addEventListener('click', function(e) {
+    e.preventDefault();
+    const messageDiv = document.getElementById('payment-message');
+    messageDiv.textContent = '';
+
+    const bundle = localStorage.getItem('selectedBundle');
+    const price = localStorage.getItem('selectedPrice');
+    const beneficiary = localStorage.getItem('beneficiaryNumber');
+    const network = localStorage.getItem('selectedNetwork');
+    const payerEmail = document.getElementById('payer-email').value.trim();
+
+    if (!bundle || !price || !beneficiary || !network) {
+      messageDiv.textContent = 'Please complete your order before proceeding to payment.';
+      return;
+    }
+
+    if (!payerEmail) {
+      messageDiv.textContent = 'Please enter your email to proceed.';
+      return;
+    }
+
+    let handler = PaystackPop.setup({
+      key: 'pk_live_7487abeb520036e7d954c7043fc080395943616e',
+      email: payerEmail,
+      amount: price * 100,
+      currency: 'GHS',
+      ref: '' + Math.floor(Math.random() * 1000000000 + 1),
+      metadata: {
+        custom_fields: [
+          { display_name: "Network", variable_name: "network", value: network },
+          { display_name: "Beneficiary Number", variable_name: "beneficiary_number", value: beneficiary },
+          { display_name: "Data Bundle", variable_name: "data_bundle", value: bundle }
+        ]
+      },
+      callback: function(response){
+        localStorage.clear();
+        window.location.href = 'success.html?reference=' + response.reference + '&email=' + encodeURIComponent(payerEmail);
+      },
+      onClose: function(){
+        messageDiv.textContent = 'Payment was not completed. Please try again.';
+      }
+    });
+
+    handler.openIframe();
+  });
+</script>
+
+</body>
+</html>

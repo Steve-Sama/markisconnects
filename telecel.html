@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>MarkisConnects | TELECEL Data</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet"/>
+  <link rel="icon" type="image/png" href="logo.png">
+
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="logo"><img src="logo.png" alt="MarkisConnects Logo"></div>
+    <div class="nav-links">
+      <a href="index.html"><i class="fa-solid fa-house"></i></a>
+      <a href="index.html#shop-section">Shop</a>
+      <a href="checkout.html">Checkout</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1>AFFORDABLE DATA BUNDLES</h1>
+      <p>Get the best deals on MTN, Telecel & AirtelTigo 24/7</p>
+      <a href="index.html#shop-section" class="btn-primary">Buy Data</a>
+    </div>
+  </section>
+
+  <!-- FEATURES BAR -->
+  <section class="features-bar">
+    <div class="feature"><i class="fa-solid fa-lock"></i><strong>Secured Payment</strong><p>100% secured payment</p></div>
+    <div class="feature"><i class="fa-solid fa-tags"></i><strong>Affordable Packages</strong><p>Access cheap data bundles easily</p></div>
+    <div class="feature"><i class="fa-solid fa-bolt"></i><strong>Fast Delivery</strong><p>Faster data delivery for all networks</p></div>
+    <div class="feature"><i class="fa-solid fa-headset"></i><strong>Customer Support</strong><p>24/7 Customer support</p></div>
+  </section>
+
+  <!-- SPLIT SCREEN -->
+  <section class="network-section">
+    <div class="network-left"><img src="telecel.png" alt="MTN Network"></div>
+    <div class="network-right">
+      <h1>MTN</h1>
+      <p>6 cedis to 220 cedis</p>
+
+      <div class="data-options">
+        <button class="data-tile" data-price="6">1GB</button>
+        <button class="data-tile" data-price="12">2GB</button>
+        <button class="data-tile" data-price="25">5GB</button>
+        <button class="data-tile" data-price="40">10GB</button>
+        <button class="data-tile" data-price="60">15GB</button>
+        <button class="data-tile" data-price="100">25GB</button>
+        <button class="data-tile" data-price="120">30GB</button>
+        <button class="data-tile" data-price="180">50GB</button>
+        <button class="data-tile" data-price="200">65GB</button>
+        <button class="data-tile" data-price="220">80GB</button>
+      </div>
+
+      <div class="beneficiary-section" style="display:none;">
+        <label for="beneficiary">Beneficiary Number:</label>
+        <input type="text" id="beneficiary" placeholder="Enter number">
+      </div>
+
+      <div class="selected-price" style="display:none;">
+        Selected Price: <span id="price-display"></span> GHS
+      </div>
+
+      <a href="#" class="btn-primary next-btn" style="display:none;">Next</a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-top">
+      <div class="footer-logo"><img src="logo.png" alt="MarkisConnects Logo"></div>
+      <div class="footer-links"><strong>Quick Links</strong><a href="shop.html">Shop</a><a href="terms.html">Terms & Conditions</a></div>
+      <div class="contact"><strong>Get In Touch</strong>
+        <p><i class="fa-solid fa-phone"></i> 0536335941</p>
+        <p><i class="fa-solid fa-envelope"></i> markisconnects@gmail.com</p>
+        <p><i class="fa-solid fa-location-dot"></i> Tamale, Ghana</p>
+      </div>
+    </div>
+    <div class="footer-bottom">© 2025 MarkisConnects. All Rights Reserved.</div>
+  </footer>
+
+  <!-- JS -->
+  <script>
+    const tiles = document.querySelectorAll('.data-tile');
+    const beneficiarySection = document.querySelector('.beneficiary-section');
+    const priceDisplay = document.getElementById('price-display');
+    const selectedPriceDiv = document.querySelector('.selected-price');
+    const nextBtn = document.querySelector('.next-btn');
+    const beneficiaryInput = document.getElementById('beneficiary');
+
+    tiles.forEach(tile => {
+      tile.addEventListener('click', () => {
+        const price = tile.getAttribute('data-price');
+        const bundle = tile.textContent;
+
+        tiles.forEach(t => t.classList.remove('active'));
+        tile.classList.add('active');
+
+        beneficiarySection.style.display = 'block';
+        selectedPriceDiv.style.display = 'block';
+        nextBtn.style.display = 'inline-block';
+        priceDisplay.textContent = price;
+
+        // Save selection
+        localStorage.setItem('selectedBundle', bundle);
+        localStorage.setItem('selectedPrice', price);
+      });
+    });
+
+    nextBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      const beneficiary = beneficiaryInput.value.trim();
+      if (!beneficiary) { alert('Please enter a beneficiary number.'); return; }
+      localStorage.setItem('beneficiaryNumber', beneficiary);
+
+      localStorage.setItem('selectedNetwork', 'TELECEL');
+
+      window.location.href = 'checkout.html';
+    });
+  </script>
+
+</body>
+</html>

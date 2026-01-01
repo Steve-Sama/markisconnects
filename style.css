@@ -1,0 +1,535 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  background: #f5f7fb;
+  color: #222;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* NAVBAR */
+.navbar {
+  background: #000;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* evenly space items */
+  padding: 15px 40px;
+}
+
+.logo img {
+  height: 70px; /* adjust as needed */
+  object-fit: contain;
+}
+
+.nav-links {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  flex: 1; /* allow nav links to take available space */
+}
+
+.nav-links a {
+  color: #fff;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+  color: #0d6efd;
+}
+
+/* Remove the nav-spacer div, no longer needed */
+
+
+/* HERO */
+.hero {
+  height: 85vh;
+  background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
+    url("hero1.jpg");
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: #fff;
+}
+
+.hero-content h1 {
+  font-size: 48px;
+  margin-bottom: 15px;
+}
+
+.hero-content p {
+  font-size: 18px;
+  margin-bottom: 30px;
+}
+
+/* HERO BUTTON HOVER */
+.btn-primary {
+  background: #0d6efd;
+  padding: 15px 35px;
+  color: #fff;
+  border-radius: 30px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+  background: #0b5ed7;
+  transform: translateY(-3px);
+  box-shadow: 0 8px 40px rgba(255, 255, 255, 0.2);
+}
+
+/* FEATURES BAR */
+.features-bar {
+  background: #fff;
+  max-width: 1200px;
+  margin: -60px auto 60px;
+  border-radius: 12px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+}
+
+.feature {
+  padding: 25px;
+  text-align: center;
+}
+
+.feature i {
+  font-size: 28px;
+  color: #0d6efd;
+  margin-bottom: 10px;
+}
+
+.feature em {
+  font-size: 14px;
+  color: #555;
+}
+
+/* SECTIONS */
+.section {
+  padding: 60px 40px;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.section h2 {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.section-subtitle {
+  text-align: center;
+  margin-bottom: 40px;
+  color: #555;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+
+/* CATEGORY TILES */
+.categories {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 25px;
+}
+
+.category {
+  height: 220px;
+  border-radius: 15px;
+  position: relative;
+  background-size: cover;
+  background-position: center;
+  overflow: hidden;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.category::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.55);
+  transition: background 0.3s ease;
+}
+
+.category span {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  color: #fff;
+  font-size: 22px;
+  font-weight: 600;
+  z-index: 1;
+  transition: transform 0.3s ease;
+}
+
+/* HOVER EFFECT */
+.category:hover::after {
+  background: rgba(0,0,0,0.35);
+}
+
+.category:hover span {
+  transform: scale(1.05);
+}
+
+/* BACKGROUND IMAGES FOR EACH CATEGORY */
+.category.mtn {
+  background-image: url("mtn.png");
+}
+
+.category.telecel {
+  background-image: url("telecel.png");
+}
+
+.category.airteltigo {
+  background-image: url("airteltigo.png");
+}
+
+/* OPTIONAL: subtle zoom on hover for image pop effect */
+.category:hover {
+  transform: scale(1.03);
+}
+
+
+/* HOW TO BUY */
+.steps {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 25px;
+}
+
+.step {
+  background: #fff;
+  padding: 30px;
+  border-radius: 15px;
+  text-align: center;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+}
+
+.step i {
+  font-size: 30px;
+  color: #0d6efd;
+  margin-bottom: 15px;
+}
+
+/* FOOTER */
+footer {
+  background: #000;
+  color: #fff;
+  padding: 50px 40px 20px;
+  margin-top: 80px;
+}
+
+.footer-top {
+  display: flex;
+  justify-content: space-between;
+  max-width: 1200px;
+  margin: auto;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+
+.footer-links a {
+  display: block;
+  margin: 8px 0;
+  color: #ccc;
+  font-size: 14px;
+}
+
+.footer-bottom {
+  text-align: center;
+  margin-top: 30px;
+  font-size: 13px;
+  color: #aaa;
+  border-top: 1px solid #222;
+  padding-top: 15px;
+}
+
+/* Navbar Logo */
+.logo img {
+  height: 50px; /* adjust as needed */
+  object-fit: contain;
+}
+
+/* Footer Logo */
+.footer-logo img {
+  height: 200px; /* adjust as needed */
+  object-fit: contain;
+}
+
+
+
+/*MTN/TELECEL/Tigo pages*/
+.network-section {
+  display: flex;
+  gap: 40px;
+  max-width: 1200px;
+  margin: 60px auto;
+  flex-wrap: wrap;
+}
+
+.network-left, .network-right {
+  flex: 1;
+  min-width: 300px;
+}
+
+.network-left img {
+  width: 100%;
+  border-radius: 15px;
+}
+
+.network-right h1 {
+  font-size: 36px;
+  margin-bottom: 10px;
+}
+
+.network-right p {
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+
+.data-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.data-tile {
+  padding: 10px 15px;
+  border-radius: 8px;
+  border: 1px solid #0d6efd;
+  background: #fff;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.data-tile:hover, .data-tile.active {
+  background: #0d6efd;
+  color: #fff;
+  transform: translateY(-2px);
+}
+
+.beneficiary-section input {
+  padding: 10px;
+  width: 100%;
+  max-width: 250px;
+  margin-top: 5px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+.next-btn {
+  margin-top: 20px;
+}
+
+
+
+.checkout-section {
+  display: flex;
+  max-width: 1200px;
+  margin: 60px auto;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+
+.checkout-summary, .checkout-payment {
+  flex: 1;
+  min-width: 300px;
+  background: #fff;
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+}
+
+.checkout-summary h2, .checkout-payment h2 {
+  margin-bottom: 25px;
+  font-size: 28px;
+}
+
+.summary-content p {
+  font-size: 18px;
+  margin-bottom: 12px;
+}
+
+.payment-method {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+#paystack-button {
+  padding: 15px 35px;
+  border-radius: 30px;
+  border: none;
+  font-weight: 500;
+  background: #0d6efd;
+  color: #fff;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+#paystack-button:hover {
+  background: #0b5ed7;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+}
+
+
+/* MOBILE OPTIMIZATION */
+@media (max-width: 992px) {
+  .navbar {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 15px 20px;
+  }
+
+  .nav-links {
+    gap: 20px;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+  }
+
+  .hero-content h1 {
+    font-size: 36px;
+  }
+
+  .hero-content p {
+    font-size: 16px;
+  }
+
+  .features-bar {
+    grid-template-columns: repeat(2, 1fr);
+    margin: -40px 20px 40px;
+  }
+
+  .categories {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+  }
+
+  .steps {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+  }
+
+  .network-section {
+    flex-direction: column;
+    gap: 30px;
+  }
+
+  .network-right h1 {
+    font-size: 28px;
+  }
+
+  .network-right p {
+    font-size: 16px;
+  }
+
+  .checkout-section {
+    flex-direction: column;
+    gap: 30px;
+  }
+
+  .checkout-summary h2,
+  .checkout-payment h2 {
+    font-size: 24px;
+  }
+
+  .summary-content p {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 576px) {
+  .navbar {
+    padding: 10px 15px;
+  }
+
+  .hero-content h1 {
+    font-size: 28px;
+  }
+
+  .hero-content p {
+    font-size: 14px;
+  }
+
+  .features-bar {
+    grid-template-columns: 1fr;
+    margin: -30px 10px 30px;
+  }
+
+  .categories {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .steps {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .network-right h1 {
+    font-size: 24px;
+  }
+
+  .network-right p {
+    font-size: 14px;
+  }
+
+  .checkout-summary,
+  .checkout-payment {
+    padding: 20px;
+  }
+
+  #paystack-button,
+  .btn-primary {
+    padding: 12px 25px;
+    font-size: 14px;
+  }
+}
+
+
+@media (max-width: 992px) {
+  /* Features bar: 2 columns instead of 4 */
+  .features-bar {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 576px) {
+  /* On very small screens: 2 columns still works or could go 1 column */
+  .features-bar {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px; /* adjust spacing */
+  }
+}
+
+
+@media (max-width: 992px) {
+  .navbar {
+    flex-direction: column;
+    align-items: center; /* keep everything centered */
+    padding: 15px 20px;
+  }
+
+  .nav-links {
+    gap: 20px;
+    flex-wrap: wrap;
+    justify-content: center; /* center links horizontally */
+    margin-top: 10px; /* small spacing below logo */
+  }
+}

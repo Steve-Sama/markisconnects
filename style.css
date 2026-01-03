@@ -53,7 +53,8 @@ a {
 /* HERO */
 .hero {
   height: 85vh;
-  background: url("hero1.jpg");
+  background: 
+    url("hero1.jpg");
   background-size: cover;
   background-position: center;
   display: flex;
@@ -534,5 +535,6 @@ footer {
     margin-top: 10px; /* small spacing below logo */
   }
 }
+
 
 

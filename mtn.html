@@ -172,8 +172,58 @@
     });
   </script>
 
+<script>
+function startDailySaleTimer() {
+  const timerBox = document.getElementById("sale-timer");
+
+  // 🔧 SET YOUR SALE TIMES HERE (24-hour format)
+  const saleStartHour = 10; // 10:00 AM
+  const saleStartMinute = 0;
+
+  const saleEndHour = 20; // 10:00 PM
+  const saleEndMinute = 40;
+
+  function updateTimer() {
+    const now = new Date();
+
+    const startTime = new Date();
+    startTime.setHours(saleStartHour, saleStartMinute, 0, 0);
+
+    const endTime = new Date();
+    endTime.setHours(saleEndHour, saleEndMinute, 0, 0);
+
+    // If current time is within sale window
+    if (now >= startTime && now <= endTime) {
+      timerBox.classList.remove("hidden");
+
+      const timeLeft = endTime - now;
+
+      const hours = Math.floor(timeLeft / (1000 * 60 * 60));
+      const minutes = Math.floor((timeLeft / (1000 * 60)) % 60);
+      const seconds = Math.floor((timeLeft / 1000) % 60);
+
+      document.getElementById("hours").textContent =
+        String(hours).padStart(2, "0");
+      document.getElementById("minutes").textContent =
+        String(minutes).padStart(2, "0");
+      document.getElementById("seconds").textContent =
+        String(seconds).padStart(2, "0");
+
+    } else {
+      timerBox.classList.add("hidden");
+    }
+  }
+
+  updateTimer();
+  setInterval(updateTimer, 1000);
+}
+
+document.addEventListener("DOMContentLoaded", startDailySaleTimer);
+</script>
+  
 </body>
 </html>
+
 
 
 

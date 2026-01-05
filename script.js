@@ -77,7 +77,7 @@ function payWithPaystack() {
 
   let handler = PaystackPop.setup({
     key: 'pk_live_7487abeb520036e7d954c7043fc080395943616e', // replace with your Paystack public key
-    email: 'markisconnects@gmail.com', // placeholder email; ideally get actual user email
+    email: 'asinforsteve@gmail.com', // placeholder email; ideally get actual user email
     amount: price * 100, // Paystack uses kobo
     currency: 'GHS',
     ref: '' + Math.floor(Math.random() * 1000000000 + 1),
@@ -106,5 +106,6 @@ function payWithPaystack() {
   });
   handler.openIframe();
 }
+
 
 

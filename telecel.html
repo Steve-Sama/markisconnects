@@ -66,7 +66,7 @@
       <p>45 cedis to 110 cedis</p>
 
       <div id="sale-timer" class="sale-timer hidden">
-      <p class="sale-title">⚡️ (OUT OF STOCK) 5PM flash-sale 5GB at GHS25.00  </p>
+      <p class="sale-title">⚡️ Flash-sale 20GB GHS84.00 -- Now GHS79.60 </p>
         
       <div class="countdown">
       <span id="hours">00</span> :
@@ -79,11 +79,10 @@
 
       <div class="data-options">
         <button class="data-tile" data-price="Out Of Stock">5GB</button>
-        <button class="data-tile" data-price="N/A">8GB</button>
-        <button class="data-tile" data-price="41.21">10GB</button>
-        <button class="data-tile" data-price="59.70">15GB</button>
-        <button class="data-tile" data-price="85.51">20GB</button>
-        <button class="data-tile" data-price="109.00">25GB</button>
+        <button class="data-tile" data-price="Out Of Stock">8GB</button>
+        <button class="data-tile" data-price="45.02">10GB</button>
+        <button class="data-tile" data-price="62.07">15GB</button>
+        <button class="data-tile" data-price="84.00">20GB</button>
       </div>
 
       <div class="beneficiary-section" style="display:none;">
@@ -159,11 +158,11 @@ function startDailySaleTimer() {
   const timerBox = document.getElementById("sale-timer");
 
   // 🔧 SET YOUR SALE TIMES HERE (24-hour format)
-  const saleStartHour = 17; // 10:00am
-  const saleStartMinute = 10;
+  const saleStartHour = 00; // 10:00am
+  const saleStartMinute = 00;
 
-  const saleEndHour = 19; // 1:00pm
-  const saleEndMinute = 30;
+  const saleEndHour = 00; // 1:00pm
+  const saleEndMinute = 00;
 
   function updateTimer() {
     const now = new Date();
@@ -205,6 +204,7 @@ document.addEventListener("DOMContentLoaded", startDailySaleTimer);
 
 </body>
 </html>
+
 
 
 

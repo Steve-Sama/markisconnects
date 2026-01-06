@@ -208,6 +208,23 @@
     </button>
   </div>
 </section>
+
+<script>
+  const toggleBtn = document.querySelector(".terms-toggle");
+  const noticeSection = document.querySelector(".terms-notice");
+
+  if (toggleBtn && noticeSection) {
+    toggleBtn.addEventListener("click", () => {
+      noticeSection.classList.toggle("hidden");
+      toggleBtn.textContent = noticeSection.classList.contains("hidden")
+        ? "Show Notice"
+        : "Hide Notice";
+    });
+  }
+</script>
+
+
+  
   
   
   <!-- FOOTER -->
@@ -239,6 +256,7 @@
 
 </body>
 </html>
+
 
 
 

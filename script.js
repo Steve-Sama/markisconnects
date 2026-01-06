@@ -1,25 +1,3 @@
-<script>
-  const toggleBtn = document.querySelector(".terms-toggle");
-  const noticeSection = document.querySelector(".terms-notice");
-
-  if (toggleBtn && noticeSection) {
-    toggleBtn.addEventListener("click", () => {
-      noticeSection.classList.toggle("hidden");
-      toggleBtn.textContent = noticeSection.classList.contains("hidden")
-        ? "Show Notice"
-        : "Hide Notice";
-    });
-  }
-</script>
-
-
-
-
-
-
-
-
-
 // ------------------------------
 // NETWORK PAGES (mtn.html / telecel.html / airteltigo.html)
 // ------------------------------
@@ -128,6 +106,7 @@ function payWithPaystack() {
   });
   handler.openIframe();
 }
+
 
 
 

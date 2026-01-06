@@ -274,6 +274,76 @@ footer {
 }
 
 
+/* ================================
+   Terms / Important Notice Section
+================================ */
+
+.terms-notice {
+  background: linear-gradient(135deg, #0a2a4a, #0f3b6f);
+  padding: 50px 16px;
+  color: #eaf2ff;
+}
+
+.terms-container {
+  max-width: 900px;
+  margin: 0 auto;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 14px;
+  padding: 30px 26px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+}
+
+.terms-title {
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin-bottom: 16px;
+  color: #ffffff;
+}
+
+.terms-text {
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: #dbe6ff;
+  margin-bottom: 14px;
+}
+
+.working-hours {
+  background: rgba(0, 0, 0, 0.25);
+  padding: 12px 16px;
+  border-left: 4px solid #4da3ff;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  margin: 18px 0;
+  color: #ffffff;
+}
+
+.working-hours strong {
+  font-weight: 600;
+}
+
+.terms-toggle {
+  margin-top: 18px;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  color: #ffffff;
+  padding: 8px 14px;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.terms-toggle:hover {
+  background: rgba(255, 255, 255, 0.12);
+}
+
+/* Hidden state */
+.terms-notice.hidden .terms-text,
+.terms-notice.hidden .working-hours {
+  display: none;
+}
+
+
 
 /*MTN/TELECEL/Tigo pages*/
 .network-section {
@@ -561,6 +631,7 @@ footer {
     margin-top: 10px; /* small spacing below logo */
   }
 }
+
 
 
 

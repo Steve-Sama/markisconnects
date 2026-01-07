@@ -82,6 +82,59 @@
 </head>
 <body>
 
+<!-- SYSTEM MAINTENANCE OVERLAY -->
+<div id="maintenance-overlay">
+  <div class="maintenance-content">
+    <h1>🚧 System Maintenance 🚧</h1>
+    <p>Our system is currently undergoing scheduled maintenance.<br>
+       Some services may be temporarily unavailable.</p>
+    <p><strong>Expected Downtime:</strong> 11:00 AM – 2:00 PM, Jan 8, 2026</p>
+    <p>We apologize for the inconvenience and appreciate your patience.</p>
+    <p>— MarkisConnects Team</p>
+  </div>
+</div>
+
+<style>
+  #maintenance-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(245, 245, 245, 0.98);
+    color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    font-family: 'Poppins', sans-serif;
+    text-align: center;
+    padding: 20px;
+  }
+
+  .maintenance-content {
+    max-width: 500px;
+    background: #fff;
+    padding: 30px 20px;
+    border-radius: 15px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+    border-top: 6px solid #4e73df;
+  }
+
+  .maintenance-content h1 {
+    margin-bottom: 20px;
+    color: #4e73df;
+  }
+
+  .maintenance-content p {
+    margin-bottom: 15px;
+    font-size: 1rem;
+    line-height: 1.5;
+  }
+</style>
+
+
+  
   <!-- NAVBAR -->
   <nav class="navbar">
     <div class="logo">
@@ -402,6 +455,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 </body>
 </html>
+
 
 
 

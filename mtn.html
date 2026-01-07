@@ -109,44 +109,78 @@
 
   <!-- JS -->
   <script>
-    const tiles = document.querySelectorAll('.data-tile');
-    const beneficiarySection = document.querySelector('.beneficiary-section');
-    const priceDisplay = document.getElementById('price-display');
-    const selectedPriceDiv = document.querySelector('.selected-price');
-    const nextBtn = document.querySelector('.next-btn');
-    const beneficiaryInput = document.getElementById('beneficiary');
+document.addEventListener("DOMContentLoaded", () => {
+  const tiles = document.querySelectorAll('.data-tile');
+  const beneficiarySection = document.querySelector('.beneficiary-section');
+  const priceDisplay = document.getElementById('price-display');
+  const selectedPriceDiv = document.querySelector('.selected-price');
+  const nextBtn = document.querySelector('.next-btn');
+  const beneficiaryInput = document.getElementById('beneficiary');
 
-    tiles.forEach(tile => {
-      tile.addEventListener('click', () => {
-        const price = tile.getAttribute('data-price').trim();
-        const bundle = tile.textContent.trim();
+  const DISCOUNT_RATE = 0.85; // 15% off
 
-        tiles.forEach(t => t.classList.remove('active'));
-        tile.classList.add('active');
+  function isSaleActive() {
+    const now = new Date();
 
-        beneficiarySection.style.display = 'block';
-        selectedPriceDiv.style.display = 'block';
-        nextBtn.style.display = 'inline-block';
-        priceDisplay.textContent = price;
+    const start = new Date();
+    start.setHours(10, 0, 0, 0); // Sale starts at 10:00
 
-        localStorage.setItem('selectedBundle', bundle);
-        localStorage.setItem('selectedPrice', price);
-      });
+    const end = new Date();
+    end.setHours(20, 44, 0, 0); // Sale ends at 20:44
+
+    return now >= start && now <= end;
+  }
+
+  tiles.forEach(tile => {
+    tile.addEventListener('click', () => {
+      const originalPrice = Number(tile.dataset.price); // parse original price
+      const bundle = tile.textContent.trim();
+
+      // Highlight selected tile
+      tiles.forEach(t => t.classList.remove('active'));
+      tile.classList.add('active');
+
+      // Show beneficiary section, price, and next button
+      beneficiarySection.style.display = 'block';
+      selectedPriceDiv.style.display = 'block';
+      nextBtn.style.display = 'inline-block';
+
+      // Calculate discounted price if sale is active
+      let finalPrice = originalPrice;
+      if (isSaleActive()) {
+        finalPrice = Math.round(originalPrice * DISCOUNT_RATE * 100) / 100;
+
+        // Inject strike-through + discounted price
+        priceDisplay.innerHTML = `
+          <span class="original-price">GHS ${originalPrice.toFixed(2)}</span>
+          <span class="discounted-price">GHS ${finalPrice.toFixed(2)}</span>
+        `;
+      } else {
+        // Show normal price if no sale
+        priceDisplay.innerHTML = `<span class="discounted-price">GHS ${originalPrice.toFixed(2)}</span>`;
+      }
+
+      // Save selection for checkout
+      localStorage.setItem('selectedBundle', bundle);
+      localStorage.setItem('selectedPrice', finalPrice);
+      localStorage.setItem('originalPrice', originalPrice);
     });
+  });
 
-    nextBtn.addEventListener('click', (e) => {
-      e.preventDefault();
-      const beneficiary = beneficiaryInput.value.trim();
-      if (!beneficiary) { alert('Please enter a beneficiary number.'); return; }
-
-      localStorage.setItem('beneficiaryNumber', beneficiary);
-      localStorage.setItem('selectedNetwork', 'MTN');
-
-      setTimeout(() => {
-        window.location.href = 'checkout.html';
-      }, 50);
-    });
-  </script>
+  // Next button click
+  nextBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+    const beneficiary = beneficiaryInput.value.trim();
+    if (!beneficiary) {
+      alert('Please enter a beneficiary number.');
+      return;
+    }
+    localStorage.setItem('beneficiaryNumber', beneficiary);
+    localStorage.setItem('selectedNetwork', 'MTN');
+    window.location.href = 'checkout.html';
+  });
+});
+</script>
 
   <script>
     function startDailySaleTimer() {
@@ -187,6 +221,7 @@
   
 </body>
 </html>
+
 
 
 

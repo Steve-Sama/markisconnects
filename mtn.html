@@ -80,7 +80,7 @@
       <p>5 cedis to 91cedis</p>
 
       <div id="sale-timer" class="sale-timer hidden">
-      <p class="sale-title">🔥 8% DISCOUNT SALE 10GB, 15GB & 20GB </p>
+      <p class="sale-title">🔥 8% DISCOUNT SALE 20GB </p>
       <div class="countdown">
       <span id="hours">00</span> :
       <span id="minutes">00</span> :
@@ -97,7 +97,7 @@
         <button class="data-tile" data-price="27.00">5GB</button>
         <button class="data-tile" data-price="48.92">10GB</button>
         <button class="data-tile" data-price="74.03">15GB</button>
-        <button class="data-tile" data-price="92.00">20GB</button>
+        <button class="data-tile" data-price="84.64">20GB</button>
       </div>
 
       <div class="beneficiary-section" style="display:none;">
@@ -172,11 +172,11 @@ function startDailySaleTimer() {
   const timerBox = document.getElementById("sale-timer");
 
   // 🔧 SET YOUR SALE TIMES HERE (24-hour format)
-  const saleStartHour = 0; // 10:00am
-  const saleStartMinute = 0;
+  const saleStartHour = 9; // 10:00am
+  const saleStartMinute = 20;
 
-  const saleEndHour = 0; // 1:00pm
-  const saleEndMinute = 0;
+  const saleEndHour = 13; // 1:00pm
+  const saleEndMinute = 20;
 
     function updateTimer() {
     const now = new Date();
@@ -218,6 +218,7 @@ document.addEventListener("DOMContentLoaded", startDailySaleTimer);
   
 </body>
 </html>
+
 
 
 

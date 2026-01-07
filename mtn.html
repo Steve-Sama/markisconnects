@@ -183,44 +183,125 @@ document.addEventListener("DOMContentLoaded", () => {
 </script>
 
   <script>
-    function startDailySaleTimer() {
-      const timerBox = document.getElementById("sale-timer");
+document.addEventListener("DOMContentLoaded", () => {
+  const tiles = document.querySelectorAll('.data-tile');
+  const beneficiarySection = document.querySelector('.beneficiary-section');
+  const priceDisplay = document.getElementById('price-display');
+  const selectedPriceDiv = document.querySelector('.selected-price');
+  const nextBtn = document.querySelector('.next-btn');
+  const beneficiaryInput = document.getElementById('beneficiary');
 
-      const saleStartHour = 9;
-      const saleStartMinute = 20;
-      const saleEndHour = 13;
-      const saleEndMinute = 20;
+  const DISCOUNT_RATE = 0.98; // 15% off
 
-      function updateTimer() {
-        const now = new Date();
-        const startTime = new Date();
-        startTime.setHours(saleStartHour, saleStartMinute, 0, 0);
-        const endTime = new Date();
-        endTime.setHours(saleEndHour, saleEndMinute, 0, 0);
+  // SALE TIMING
+  const saleStartHour = 10; // 10:00 AM
+  const saleStartMinute = 0;
+  const saleEndHour = 12; // 12:07 PM
+  const saleEndMinute = 18;
 
-        if (now >= startTime && now <= endTime) {
-          timerBox.classList.remove("hidden");
-          const timeLeft = endTime - now;
-          const hours = Math.floor(timeLeft / (1000 * 60 * 60));
-          const minutes = Math.floor((timeLeft / (1000 * 60)) % 60);
-          const seconds = Math.floor((timeLeft / 1000) % 60);
-          document.getElementById("hours").textContent = String(hours).padStart(2, "0");
-          document.getElementById("minutes").textContent = String(minutes).padStart(2, "0");
-          document.getElementById("seconds").textContent = String(seconds).padStart(2, "0");
-        } else {
-          timerBox.classList.add("hidden");
-        }
-      }
+  function isSaleActive() {
+    const now = new Date();
+    const start = new Date();
+    start.setHours(saleStartHour, saleStartMinute, 0, 0);
+    const end = new Date();
+    end.setHours(saleEndHour, saleEndMinute, 0, 0);
+    return now >= start && now <= end;
+  }
 
-      updateTimer();
-      setInterval(updateTimer, 1000);
+  let selectedBundle = null;
+  let selectedOriginalPrice = 0;
+
+  // Handle bundle selection
+  tiles.forEach(tile => {
+    tile.addEventListener('click', () => {
+      const originalPrice = Number(tile.dataset.price);
+      const bundle = tile.textContent.trim();
+
+      // Highlight selected tile
+      tiles.forEach(t => t.classList.remove('active'));
+      tile.classList.add('active');
+
+      // Show beneficiary section, price, next button
+      beneficiarySection.style.display = 'block';
+      selectedPriceDiv.style.display = 'block';
+      nextBtn.style.display = 'inline-block';
+
+      selectedBundle = bundle;
+      selectedOriginalPrice = originalPrice;
+
+      updatePriceDisplay();
+    });
+  });
+
+  // Update price display based on current sale status
+  function updatePriceDisplay() {
+    if (!selectedBundle) return;
+
+    let finalPrice = selectedOriginalPrice;
+    if (isSaleActive()) {
+      finalPrice = Math.round(selectedOriginalPrice * DISCOUNT_RATE * 100) / 100;
+      priceDisplay.innerHTML = `
+        <span class="original-price" style="text-decoration:line-through;">GHS ${selectedOriginalPrice.toFixed(2)}</span>
+        <span class="discounted-price"> GHS ${finalPrice.toFixed(2)}</span>
+      `;
+    } else {
+      priceDisplay.innerHTML = `<span class="discounted-price">GHS ${selectedOriginalPrice.toFixed(2)}</span>`;
     }
 
-    document.addEventListener("DOMContentLoaded", startDailySaleTimer);
-  </script>
+    localStorage.setItem('selectedBundle', selectedBundle);
+    localStorage.setItem('selectedPrice', finalPrice);
+    localStorage.setItem('originalPrice', selectedOriginalPrice);
+  }
+
+  // Next button click
+  nextBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+    const beneficiary = beneficiaryInput.value.trim();
+    if (!beneficiary) {
+      alert('Please enter a beneficiary number.');
+      return;
+    }
+    localStorage.setItem('beneficiaryNumber', beneficiary);
+    localStorage.setItem('selectedNetwork', 'MTN');
+    window.location.href = 'checkout.html';
+  });
+
+  // SALE TIMER
+  const timerBox = document.getElementById("sale-timer");
+  function updateTimer() {
+    const now = new Date();
+    const startTime = new Date();
+    startTime.setHours(saleStartHour, saleStartMinute, 0, 0);
+    const endTime = new Date();
+    endTime.setHours(saleEndHour, saleEndMinute, 0, 0);
+
+    if (now >= startTime && now <= endTime) {
+      timerBox.classList.remove("hidden");
+
+      const timeLeft = endTime - now;
+      const hours = Math.floor(timeLeft / (1000 * 60 * 60));
+      const minutes = Math.floor((timeLeft / (1000 * 60)) % 60);
+      const seconds = Math.floor((timeLeft / 1000) % 60);
+
+      document.getElementById("hours").textContent = String(hours).padStart(2, "0");
+      document.getElementById("minutes").textContent = String(minutes).padStart(2, "0");
+      document.getElementById("seconds").textContent = String(seconds).padStart(2, "0");
+    } else {
+      timerBox.classList.add("hidden");
+    }
+
+    // Update price display every second to auto-remove discount
+    updatePriceDisplay();
+  }
+
+  updateTimer();
+  setInterval(updateTimer, 1000);
+});
+</script>
   
 </body>
 </html>
+
 
 
 

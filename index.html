@@ -254,16 +254,28 @@
     </div>
   </footer>
 
-  
 
-<!-- 🇬🇭 Constitution Day Popup -->
+
+  <!-- 🇬🇭 Constitution Day Popup -->
 <div id="constitution-day-popup">
   <div class="cd-popup-box">
     <h3>🇬🇭 Happy Constitution Day</h3>
+
     <p>
       Celebrating Ghana’s constitutional freedom, democracy, and unity.
       Wishing you peace, progress, and prosperity.
     </p>
+
+    <!-- Special Day Offer -->
+    <div class="special-offer">
+      <span class="offer-title">🎉 Special Day Offer</span>
+      <div class="offer-item">
+        <strong>MTN 20GB</strong><br />
+        <span class="old-price">₵92.00</span>
+        <span class="new-price">₵84.64</span>
+      </div>
+    </div>
+
     <button id="cd-dismiss">Dismiss</button>
   </div>
 </div>
@@ -302,8 +314,41 @@
   line-height: 1.55;
 }
 
+/* Special Offer Styling */
+.special-offer {
+  margin-top: 14px;
+  padding: 14px;
+  border-radius: 10px;
+  background: #f5f9ff;
+}
+
+.offer-title {
+  display: block;
+  font-size: 14px;
+  font-weight: 600;
+  color: #0a7cff;
+  margin-bottom: 6px;
+}
+
+.offer-item {
+  font-size: 15px;
+  color: #222;
+}
+
+.old-price {
+  text-decoration: line-through;
+  color: #888;
+  margin-right: 8px;
+}
+
+.new-price {
+  color: #0a7cff;
+  font-weight: 700;
+}
+
+/* Button */
 .cd-popup-box button {
-  margin-top: 16px;
+  margin-top: 18px;
   padding: 10px 22px;
   border: none;
   border-radius: 9px;
@@ -338,12 +383,10 @@ document.addEventListener("DOMContentLoaded", function () {
   const isConstitutionDay =
     today.getDate() === 7 && today.getMonth() === 0; // January = 0
 
-  // Never show if today is not Jan 7
   if (!isConstitutionDay) return;
 
   const storageKey = "constitutionDaySeen";
 
-  // Show only once per user today
   if (!localStorage.getItem(storageKey)) {
     popup.style.display = "flex";
   }
@@ -359,6 +402,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 </body>
 </html>
+
 
 
 

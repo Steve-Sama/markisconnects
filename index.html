@@ -254,8 +254,112 @@
     </div>
   </footer>
 
+  
+
+<!-- 🇬🇭 Constitution Day Popup -->
+<div id="constitution-day-popup">
+  <div class="cd-popup-box">
+    <h3>🇬🇭 Happy Constitution Day</h3>
+    <p>
+      Celebrating Ghana’s constitutional freedom, democracy, and unity.
+      Wishing you peace, progress, and prosperity.
+    </p>
+    <button id="cd-dismiss">Dismiss</button>
+  </div>
+</div>
+
+<style>
+#constitution-day-popup {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 10000;
+}
+
+.cd-popup-box {
+  background: #ffffff;
+  width: 90%;
+  max-width: 380px;
+  padding: 24px;
+  border-radius: 14px;
+  text-align: center;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.18);
+  animation: cdFadeIn 0.35s ease-out;
+}
+
+.cd-popup-box h3 {
+  margin: 0 0 10px;
+  font-size: 20px;
+  color: #0a7cff;
+}
+
+.cd-popup-box p {
+  font-size: 15px;
+  color: #333;
+  line-height: 1.55;
+}
+
+.cd-popup-box button {
+  margin-top: 16px;
+  padding: 10px 22px;
+  border: none;
+  border-radius: 9px;
+  background: #0a7cff;
+  color: #ffffff;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.cd-popup-box button:hover {
+  opacity: 0.9;
+}
+
+@keyframes cdFadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.94);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+</style>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  const popup = document.getElementById("constitution-day-popup");
+  const dismissBtn = document.getElementById("cd-dismiss");
+
+  const today = new Date();
+  const isConstitutionDay =
+    today.getDate() === 7 && today.getMonth() === 0; // January = 0
+
+  // Never show if today is not Jan 7
+  if (!isConstitutionDay) return;
+
+  const storageKey = "constitutionDaySeen";
+
+  // Show only once per user today
+  if (!localStorage.getItem(storageKey)) {
+    popup.style.display = "flex";
+  }
+
+  dismissBtn.addEventListener("click", function () {
+    localStorage.setItem(storageKey, "true");
+    popup.style.display = "none";
+  });
+});
+</script>
+  
+
+
 </body>
 </html>
+
 
 
 

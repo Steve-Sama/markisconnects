@@ -129,44 +129,46 @@
 
   <!-- JS -->
   <script>
-    const tiles = document.querySelectorAll('.data-tile');
-    const beneficiarySection = document.querySelector('.beneficiary-section');
-    const priceDisplay = document.getElementById('price-display');
-    const selectedPriceDiv = document.querySelector('.selected-price');
-    const nextBtn = document.querySelector('.next-btn');
-    const beneficiaryInput = document.getElementById('beneficiary');
+const tiles = document.querySelectorAll('.data-tile');
+const beneficiarySection = document.querySelector('.beneficiary-section');
+const priceDisplay = document.getElementById('price-display');
+const selectedPriceDiv = document.querySelector('.selected-price');
+const nextBtn = document.querySelector('.next-btn');
+const beneficiaryInput = document.getElementById('beneficiary');
 
-    tiles.forEach(tile => {
-      tile.addEventListener('click', () => {
-        const price = tile.getAttribute('data-price');
-        const bundle = tile.textContent;
+tiles.forEach(tile => {
+  tile.addEventListener('click', () => {
+    const price = parseFloat(tile.getAttribute('data-price')); // ensure numeric
+    const bundle = tile.textContent.trim(); // remove extra spaces/newlines
 
-        tiles.forEach(t => t.classList.remove('active'));
-        tile.classList.add('active');
+    tiles.forEach(t => t.classList.remove('active'));
+    tile.classList.add('active');
 
-        beneficiarySection.style.display = 'block';
-        selectedPriceDiv.style.display = 'block';
-        nextBtn.style.display = 'inline-block';
-        priceDisplay.textContent = price;
+    beneficiarySection.style.display = 'block';
+    selectedPriceDiv.style.display = 'block';
+    nextBtn.style.display = 'inline-block';
+    priceDisplay.textContent = price.toFixed(2);
 
-        // Save selection
-        localStorage.setItem('selectedBundle', bundle);
-        localStorage.setItem('selectedPrice', price);
-      });
-    });
+    // Save clean values in localStorage
+    localStorage.setItem('selectedBundle', bundle);
+    localStorage.setItem('selectedPrice', price);
+  });
+});
 
-    nextBtn.addEventListener('click', (e) => {
-      e.preventDefault();
-      const beneficiary = beneficiaryInput.value.trim();
-      if (!beneficiary) { alert('Please enter a beneficiary number.'); return; }
-      localStorage.setItem('beneficiaryNumber', beneficiary);
+nextBtn.addEventListener('click', (e) => {
+  e.preventDefault();
+  const beneficiary = beneficiaryInput.value.trim();
+  if (!beneficiary) { alert('Please enter a beneficiary number.'); return; }
 
-      localStorage.setItem('selectedNetwork', 'MTN');
+  localStorage.setItem('beneficiaryNumber', beneficiary);
+  localStorage.setItem('selectedNetwork', 'MTN');
 
-      window.location.href = 'checkout.html';
-    });
-  </script>
+  window.location.href = 'checkout.html';
+});
+</script>
 
+
+  
 <script>
 function startDailySaleTimer() {
   const timerBox = document.getElementById("sale-timer");
@@ -218,6 +220,7 @@ document.addEventListener("DOMContentLoaded", startDailySaleTimer);
   
 </body>
 </html>
+
 
 
 

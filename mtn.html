@@ -4,18 +4,16 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-LK9K23WFV7"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-LK9K23WFV7');
-</script>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-LK9K23WFV7"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-LK9K23WFV7');
+  </script>
 
   <link rel="canonical" href="https://markisconnects.com/mtn.html">
-
   <meta name="google-adsense-account" content="ca-pub-8235762815486241">
   
   <title>MarkisConnects | MTN Data</title>
@@ -24,24 +22,6 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet"/>
   <link rel="icon" type="image/png" href="logo.png">
   <meta name="description" content="Buy cheap MTN data bundles in Ghana with instant delivery. Secure Paystack payment and fast processing.">
-
-  <!-- Open Graph (Facebook, WhatsApp, Telegram, LinkedIn) -->
-<meta property="og:type" content="website">
-<meta property="og:title" content="MarkisConnects – Affordable Data Bundles in Ghana">
-<meta property="og:description" content="Buy MTN, Telecel & AirtelTigo data instantly. Fast delivery, secure payments, 24/7 support.">
-<meta property="og:url" content="https://markisconnects.com">
-<meta property="og:image" content="https://markisconnects.com/logo.png">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
-<meta property="og:site_name" content="MarkisConnects">
-
-<!-- Twitter Card -->
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="MarkisConnects – Affordable Data Bundles in Ghana">
-<meta name="twitter:description" content="Instant MTN, Telecel & AirtelTigo data bundles at the best rates.">
-<meta name="twitter:image" content="https://markisconnects.com/logo.png">
-
-
 </head>
 <body>
 
@@ -77,15 +57,15 @@
     <div class="network-left"><img src="mtn.png" alt="MTN Network"></div>
     <div class="network-right">
       <h1>MTN</h1>
-      <p>5 cedis to 91cedis</p>
+      <p>5 cedis to 91 cedis</p>
 
       <div id="sale-timer" class="sale-timer hidden">
-      <p class="sale-title">🔥 8% DISCOUNT SALE 20GB </p>
-      <div class="countdown">
-      <span id="hours">00</span> :
-      <span id="minutes">00</span> :
-      <span id="seconds">00</span>
-      </div>
+        <p class="sale-title">🔥 8% DISCOUNT SALE 20GB </p>
+        <div class="countdown">
+          <span id="hours">00</span> :
+          <span id="minutes">00</span> :
+          <span id="seconds">00</span>
+        </div>
       </div>
 
       <p>Wait 10Mins - 3Hrs for data to be delivered</p>
@@ -109,7 +89,7 @@
         Selected Price: <span id="price-display"></span> GHS
       </div>
 
-      <a href="#" class="btn-primary next-btn" style="display:none;">Next</a>
+      <button class="btn-primary next-btn" style="display:none;">Next</button>
     </div>
   </section>
 
@@ -129,125 +109,84 @@
 
   <!-- JS -->
   <script>
-const tiles = document.querySelectorAll('.data-tile');
-const beneficiarySection = document.querySelector('.beneficiary-section');
-const priceDisplay = document.getElementById('price-display');
-const selectedPriceDiv = document.querySelector('.selected-price');
-const nextBtn = document.querySelector('.next-btn');
-const beneficiaryInput = document.getElementById('beneficiary');
+    const tiles = document.querySelectorAll('.data-tile');
+    const beneficiarySection = document.querySelector('.beneficiary-section');
+    const priceDisplay = document.getElementById('price-display');
+    const selectedPriceDiv = document.querySelector('.selected-price');
+    const nextBtn = document.querySelector('.next-btn');
+    const beneficiaryInput = document.getElementById('beneficiary');
 
-tiles.forEach(tile => {
-  tile.addEventListener('click', () => {
-    const price = tile.getAttribute('data-price').trim(); // store as string
-    const bundle = tile.textContent.trim();
+    tiles.forEach(tile => {
+      tile.addEventListener('click', () => {
+        const price = tile.getAttribute('data-price').trim();
+        const bundle = tile.textContent.trim();
 
-    tiles.forEach(t => t.classList.remove('active'));
-    tile.classList.add('active');
+        tiles.forEach(t => t.classList.remove('active'));
+        tile.classList.add('active');
 
-    beneficiarySection.style.display = 'block';
-    selectedPriceDiv.style.display = 'block';
-    nextBtn.style.display = 'inline-block';
-    priceDisplay.textContent = price;
+        beneficiarySection.style.display = 'block';
+        selectedPriceDiv.style.display = 'block';
+        nextBtn.style.display = 'inline-block';
+        priceDisplay.textContent = price;
 
-    // Save clean values in localStorage
-    localStorage.setItem('selectedBundle', bundle);
-    localStorage.setItem('selectedPrice', price);
-  });
-});
+        localStorage.setItem('selectedBundle', bundle);
+        localStorage.setItem('selectedPrice', price);
+      });
+    });
 
-nextBtn.addEventListener('click', (e) => {
-  e.preventDefault();
-  const beneficiary = beneficiaryInput.value.trim();
-  if (!beneficiary) { alert('Please enter a beneficiary number.'); return; }
+    nextBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      const beneficiary = beneficiaryInput.value.trim();
+      if (!beneficiary) { alert('Please enter a beneficiary number.'); return; }
 
-  localStorage.setItem('beneficiaryNumber', beneficiary);
-  localStorage.setItem('selectedNetwork', 'MTN');
+      localStorage.setItem('beneficiaryNumber', beneficiary);
+      localStorage.setItem('selectedNetwork', 'MTN');
 
-  // Small delay to ensure localStorage writes before redirect
-  setTimeout(() => {
-    window.location.href = 'checkout.html';
-  }, 50);
-});
-</script>
+      setTimeout(() => {
+        window.location.href = 'checkout.html';
+      }, 50);
+    });
+  </script>
 
+  <script>
+    function startDailySaleTimer() {
+      const timerBox = document.getElementById("sale-timer");
 
-  
-<script>
-function startDailySaleTimer() {
-  const timerBox = document.getElementById("sale-timer");
+      const saleStartHour = 9;
+      const saleStartMinute = 20;
+      const saleEndHour = 13;
+      const saleEndMinute = 20;
 
-  // 🔧 SET YOUR SALE TIMES HERE (24-hour format)
-  const saleStartHour = 9; // 10:00am
-  const saleStartMinute = 20;
+      function updateTimer() {
+        const now = new Date();
+        const startTime = new Date();
+        startTime.setHours(saleStartHour, saleStartMinute, 0, 0);
+        const endTime = new Date();
+        endTime.setHours(saleEndHour, saleEndMinute, 0, 0);
 
-  const saleEndHour = 13; // 1:00pm
-  const saleEndMinute = 20;
+        if (now >= startTime && now <= endTime) {
+          timerBox.classList.remove("hidden");
+          const timeLeft = endTime - now;
+          const hours = Math.floor(timeLeft / (1000 * 60 * 60));
+          const minutes = Math.floor((timeLeft / (1000 * 60)) % 60);
+          const seconds = Math.floor((timeLeft / 1000) % 60);
+          document.getElementById("hours").textContent = String(hours).padStart(2, "0");
+          document.getElementById("minutes").textContent = String(minutes).padStart(2, "0");
+          document.getElementById("seconds").textContent = String(seconds).padStart(2, "0");
+        } else {
+          timerBox.classList.add("hidden");
+        }
+      }
 
-    function updateTimer() {
-    const now = new Date();
-
-    const startTime = new Date();
-    startTime.setHours(saleStartHour, saleStartMinute, 0, 0);
-
-    const endTime = new Date();
-    endTime.setHours(saleEndHour, saleEndMinute, 0, 0);
-
-    // If current time is within sale window
-    if (now >= startTime && now <= endTime) {
-      timerBox.classList.remove("hidden");
-
-      const timeLeft = endTime - now;
-
-      const hours = Math.floor(timeLeft / (1000 * 60 * 60));
-      const minutes = Math.floor((timeLeft / (1000 * 60)) % 60);
-      const seconds = Math.floor((timeLeft / 1000) % 60);
-
-      document.getElementById("hours").textContent =
-        String(hours).padStart(2, "0");
-      document.getElementById("minutes").textContent =
-        String(minutes).padStart(2, "0");
-      document.getElementById("seconds").textContent =
-        String(seconds).padStart(2, "0");
-
-    } else {
-      timerBox.classList.add("hidden");
+      updateTimer();
+      setInterval(updateTimer, 1000);
     }
-  }
 
-  updateTimer();
-  setInterval(updateTimer, 1000);
-}
-
-document.addEventListener("DOMContentLoaded", startDailySaleTimer);
-</script>
+    document.addEventListener("DOMContentLoaded", startDailySaleTimer);
+  </script>
   
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

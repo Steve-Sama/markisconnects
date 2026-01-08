@@ -192,6 +192,7 @@ html {
 .category.mtn { background-image: url("mtn.png"); }
 .category.telecel { background-image: url("telecel.jpeg"); }
 .category.airteltigo { background-image: url("airteltigo.png"); }
+.category.ebook { background-image: url("frontpage.png"); }
 
 /* MOBILE ADJUSTMENTS */
 @media (max-width: 768px) {
@@ -646,6 +647,7 @@ footer {
     margin-top: 10px; /* small spacing below logo */
   }
 }
+
 
 
 

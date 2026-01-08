@@ -57,10 +57,10 @@
     <div class="network-left"><img src="mtn.png" alt="MTN Network"></div>
     <div class="network-right">
       <h1>MTN</h1>
-      <p>5 cedis to 91 cedis</p>
+      <p>3.02 cedis to 91.80 cedis</p>
 
       <div id="sale-timer" class="sale-timer hidden">
-        <p class="sale-title">🔥 8% DISCOUNT SALE</p>
+        <p class="sale-title">🔥 ◼️ BLACK FRIDAY DISCOUNT SALE</p>
         <div class="countdown">
           <span id="hours">00</span> :
           <span id="minutes">00</span> :
@@ -71,13 +71,13 @@
       <p>Wait 10Mins - 3Hrs for data to be delivered</p>
 
       <div class="data-options">
-        <button class="data-tile" data-price="5.49">1GB</button>
-        <button class="data-tile" data-price="10.57">2GB</button>
-        <button class="data-tile" data-price="27.09">4GB</button>
-        <button class="data-tile" data-price="29.89">5GB</button>
-        <button class="data-tile" data-price="51.92">10GB</button>
+        <button class="data-tile" data-price="unavailable">1GB</button>
+        <button class="data-tile" data-price="9.99">2GB</button>
+        <button class="data-tile" data-price="20.92">4GB</button>
+        <button class="data-tile" data-price="unavailable">5GB</button>
+        <button class="data-tile" data-price="49.99">10GB</button>
         <button class="data-tile" data-price="80.49">15GB</button>
-        <button class="data-tile" data-price="89.98">20GB</button>
+        <button class="data-tile" data-price="unavailable">20GB</button>
       </div>
 
       <div class="beneficiary-section" style="display:none;">
@@ -194,9 +194,10 @@ document.addEventListener("DOMContentLoaded", () => {
 const DISCOUNT_RATE = 0.95; // 15% off  
 
   // SALE TIMING
-  const saleStartHour = 10; // 10:30 AM
-  const saleStartMinute = 30;
-  const saleEndHour = 13; // 2:30 PM
+  const saleStartHour = 11; // 10:30 AM
+  const saleStartMinute = 19;
+  
+  const saleEndHour = 17; // 2:30 PM
   const saleEndMinute = 30;
 
   function isSaleActive() {
@@ -301,6 +302,7 @@ const DISCOUNT_RATE = 0.95; // 15% off
   
 </body>
 </html>
+
 
 
 

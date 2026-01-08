@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>7-Second Decision Ebook | MarkisConnects</title>
+<link rel="icon" type="image/png" href="logo.png">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
+body{background-color:#c5cfdf;display:flex;justify-content:center;align-items:center;min-height:100vh;}
+.ebook-container{background:#ffffff;max-width:400px;width:90%;padding:30px;border-radius:12px;box-shadow:0 8px 25px rgba(0,0,0,0.15);text-align:center;position:relative;}
+.back-btn{position:absolute;top:20px;left:20px;background:#e6e6e6;width:40px;height:40px;border-radius:50%;display:flex;justify-content:center;align-items:center;cursor:pointer;transition:0.2s;}
+.back-btn:hover{background:#d0d0d0;}
+.back-btn i{font-size:18px;color:#333;}
+.ebook-cover {width: 100%; max-width: 250px; margin: 20px auto; border-radius: 0; box-shadow: none; background: transparent; /* Ensure no background */}
+.ebook-title{font-size:22px;font-weight:700;margin:15px 0 10px 0;color:#111;}
+.ebook-desc{font-size:15px;color:#555;margin-bottom:20px;line-height:1.5;}
+.ebook-price{font-size:20px;font-weight:600;margin-bottom:25px;color:#222;}
+.purchase-btn{background:#1e90ff;color:#fff;border:none;padding:15px 0;width:100%;border-radius:8px;font-size:16px;font-weight:600;cursor:pointer;transition:0.2s;}
+.purchase-btn:hover{background:#1573cc;}
+.redirect-note{font-size:13px;color:#666;margin-top:15px;}
+
+/* Modal */
+.modal-overlay{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.5);display:none;justify-content:center;align-items:center;z-index:1000;}
+.modal{background:#fff;padding:25px;border-radius:10px;width:90%;max-width:350px;position:relative;text-align:left;box-shadow:0 5px 20px rgba(0,0,0,0.2);}
+.modal-header{display:flex;align-items:center;margin-bottom:20px;}
+.modal-header img{width:50px;height:50px;border-radius:5px;margin-right:15px;}
+.modal-header h3{font-size:18px;color:#111;}
+.modal-body label{display:block;font-size:14px;color:#333;margin-bottom:5px;}
+.modal-body input{width:100%;padding:10px;border-radius:6px;border:1px solid #ccc;margin-bottom:20px;font-size:14px;}
+.modal-footer{display:flex;justify-content:flex-end;}
+.proceed-btn{background:#1e90ff;color:#fff;border:none;padding:12px 20px;border-radius:8px;font-weight:600;cursor:pointer;transition:0.2s;}
+.proceed-btn:hover{background:#1573cc;}
+.close-modal{position:absolute;top:15px;right:15px;font-size:16px;color:#555;cursor:pointer;}
+</style>
+</head>
+<body>
+
+<div class="ebook-container">
+  <div class="back-btn" onclick="goBack()">
+    <i class="fa-solid fa-arrow-left"></i>
+  </div>
+
+  <img src="frontpage.png" alt="7-Second Decision Ebook Cover" class="ebook-cover">
+
+  <h2 class="ebook-title">7-Second Decision Ebook</h2>
+
+  <p class="ebook-desc">
+    Discover the secret psychological trick that makes people buy almost instantly.  
+    This micro-ebook is short, insightful, and will open your eyes to how quick decisions work in everyday life.
+  </p>
+
+  <div class="ebook-price">GHS 1.00</div>
+
+  <button class="purchase-btn" id="purchaseBtn">Purchase Now</button>
+
+  <div class="redirect-note">
+    After purchase, you will be redirected to a page to download your ebook instantly.
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal-overlay" id="modalOverlay">
+  <div class="modal">
+    <span class="close-modal" id="closeModal">&times;</span>
+    <div class="modal-header">
+      <img src="frontpage.png" alt="Ebook Cover">
+      <h3>7-Second Decision Ebook</h3>
+    </div>
+    <div class="modal-body">
+      <label for="emailInput">Enter your email for receipt:</label>
+      <input type="email" id="emailInput" placeholder="you@example.com" required>
+    </div>
+    <div class="modal-footer">
+      <button class="proceed-btn" id="proceedBtn">Proceed to Payment</button>
+    </div>
+  </div>
+</div>
+
+<!-- Paystack Script -->
+<script src="https://js.paystack.co/v1/inline.js"></script>
+
+<script>
+// Back button
+function goBack() { window.history.back(); }
+
+// Open modal on purchase click
+document.getElementById('purchaseBtn').addEventListener('click', function(){
+  document.getElementById('modalOverlay').style.display = 'flex';
+});
+
+// Close modal
+document.getElementById('closeModal').addEventListener('click', function(){
+  document.getElementById('modalOverlay').style.display = 'none';
+});
+
+// Proceed to Paystack
+document.getElementById('proceedBtn').addEventListener('click', function(){
+  const email = document.getElementById('emailInput').value.trim();
+  if(email === '') { alert('Please enter your email.'); return; }
+
+  let handler = PaystackPop.setup({
+    key: 'pk_live_7487abeb520036e7d954c7043fc080395943616e', // replace with your Paystack public key
+    email: email,
+    amount: 100, // GHS1 in pesewas
+    currency: 'GHS',
+    ref: '' + Math.floor((Math.random() * 1000000000) + 1),
+    metadata: {
+      custom_fields: [
+        { display_name: "Ebook Name", variable_name: "ebook", value: "7-Second Decision Ebook" }
+      ]
+    },
+    callback: function(response){
+      // Payment successful → redirect to download page
+      window.location.href = "download.html";
+    },
+    onClose: function(){ alert('Payment was cancelled.'); }
+  });
+  handler.openIframe();
+});
+</script>
+
+</body>
+</html>

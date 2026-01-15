@@ -82,6 +82,108 @@
 </head>
 <body>
 
+
+<!-- Maintenance Mode: Animated Wrench & Bolt -->
+<style>
+  #maintenance-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #f9f9f9;
+    color: #333;
+    font-family: 'Poppins', sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    text-align: center;
+    padding: 20px;
+  }
+
+  #maintenance-overlay h1 {
+    font-size: 2.5rem;
+    margin: 20px 0 10px;
+  }
+
+  #maintenance-overlay p {
+    font-size: 1.2rem;
+    margin-bottom: 40px;
+  }
+
+  /* Wrench & Bolt container */
+  .mechanic {
+    position: relative;
+    width: 100px;
+    height: 100px;
+  }
+
+  /* Bolt */
+  .bolt {
+    width: 40px;
+    height: 40px;
+    background: #007BFF;
+    clip-path: polygon(
+      50% 0%, 65% 15%, 80% 0%, 100% 20%, 85% 35%, 100% 50%, 
+      85% 65%, 100% 80%, 80% 100%, 65% 85%, 50% 100%, 35% 85%, 
+      20% 100%, 0% 80%, 15% 65%, 0% 50%, 15% 35%, 0% 20%, 20% 0%, 35% 15%
+    );
+    animation: bolt-spin 2s linear infinite;
+    position: absolute;
+    top: 30px;
+    left: 30px;
+  }
+
+  @keyframes bolt-spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+
+  /* Wrench */
+  .wrench {
+    width: 80px;
+    height: 20px;
+    background: #666;
+    border-radius: 4px;
+    position: absolute;
+    top: 50px;
+    left: 10px;
+    transform-origin: left center;
+    animation: wrench-turn 2s ease-in-out infinite;
+  }
+
+  @keyframes wrench-turn {
+    0%, 100% { transform: rotate(-45deg); }
+    50% { transform: rotate(45deg); }
+  }
+</style>
+
+<div id="maintenance-overlay">
+  <div class="mechanic">
+    <div class="bolt"></div>
+    <div class="wrench"></div>
+  </div>
+  <h1>⚠️ Site Under Maintenance</h1>
+  <p>Our team is updating the system. Please check back soon!</p>
+</div>
+
+<script>
+  // Disable scrolling
+  document.body.style.overflow = 'hidden';
+
+  // Disable clicks behind overlay
+  document.body.addEventListener('click', function(e){
+    e.stopPropagation();
+    e.preventDefault();
+  }, true);
+</script>
+
+  
+
+  
+
   <!-- NAVBAR -->
   <nav class="navbar">
     <div class="logo">
@@ -258,6 +360,7 @@
 
 </body>
 </html>
+
 
 
 

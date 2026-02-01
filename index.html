@@ -255,30 +255,81 @@
     </div>
   </footer>
 
-<!-- Maintenance Notice -->
-<div class="maintenance-banner">
-  <strong>Markis Connects Notice:</strong><br>
-  Our services are currently halted for periodic maintenance.<br>
-  Services will resume on <strong>Monday, 2nd February 2026 at 9:00 AM</strong>.
+<!-- Maintenance Popup -->
+<div id="maintenancePopup" class="popup-overlay">
+  <div class="popup-box">
+    <h3>Markis Connects – Maintenance Notice</h3>
+    <p>
+      Our services are currently halted for periodic maintenance.<br><br>
+      <strong>Services will resume on<br>
+      Monday, 2nd February 2026 at 9:00 AM</strong>
+    </p>
+    <button onclick="closePopup()">OK, Got it</button>
+  </div>
 </div>
 
 <style>
-  .maintenance-banner {
+  .popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
     width: 100%;
-    padding: 15px;
-    background: #111;
-    color: #fff;
+    height: 100%;
+    background: rgba(0,0,0,0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+  }
+
+  .popup-box {
+    background: #fff;
+    padding: 25px;
+    width: 90%;
+    max-width: 420px;
     text-align: center;
     font-family: Arial, sans-serif;
+    border-radius: 8px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+  }
+
+  .popup-box h3 {
+    margin-top: 0;
+    color: #111;
+  }
+
+  .popup-box p {
+    color: #333;
     font-size: 15px;
     line-height: 1.5;
-    border-bottom: 3px solid #007BFF;
+  }
+
+  .popup-box button {
+    margin-top: 15px;
+    padding: 10px 18px;
+    background: #007BFF;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+  }
+
+  .popup-box button:hover {
+    background: #0056b3;
   }
 </style>
+
+<script>
+  function closePopup() {
+    document.getElementById("maintenancePopup").style.display = "none";
+  }
+</script>
 
   
 </body>
 </html>
+
 
 
 
